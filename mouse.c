@@ -9,9 +9,9 @@
 #define COM3 2
 #define COM4 3
 #define RIGTH	64
-#define LEFT	79
-#define UP		76
-#define DOWN	67
+#define LEFT	2
+#define UP		16
+#define DOWN	1
 #define CLICK	80
 
 int ii;
@@ -21,10 +21,10 @@ void locate(xx,yy);
 void cursors(y1,y2);
 
 int main(){
-	int x=0;
+	int x=40;
 	int y=0;
-	int x1=0;
-	int y1=0;
+	int x1=40;
+	int y1=17;
 	int clicks=0;
 	int n=0;
 	int nn=0;
@@ -36,20 +36,20 @@ int main(){
 	while(n!=27){
 		nn=comport(COM1);
 		nn=nn & 0xff;
-		if(nn==UP){
+		if((nn & UP) !=0){
 			y--;
 		}
 
-		if(nn==DOWN){
+		if((nn & DOWN) !=0){
 			y++;
 		}
-		if(nn==LEFT){
+		if((nn & LEFT)!=0){
 			x--;
 		}
-		if(nn==RIGTH){
+		if((nn & RIGTH)!=0){
 			x++;
 		}
-		if(nn==CLICK){
+		if((nn & CLICK)!=0){
 			clicks=1;
 		}
 		if (x<0)x=0;
